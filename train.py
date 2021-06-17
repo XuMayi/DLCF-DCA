@@ -213,7 +213,7 @@ def main():
     parser.add_argument('--device', default='cuda:0', type=str, help='e.g. cuda:0')
     parser.add_argument('--seed', default=1, type=int, help='set seed for reproducibility')
     parser.add_argument('--valset_ratio', default=0, type=float, help='set ratio between 0 and 1 for validation support')
-    # The following parameters are only valid for the lcf-bert model
+    # The following parameters are only valid for the DLCF-DCA model
     parser.add_argument('--local_context_focus', default='cdm', type=str, help='local context focus mode, cdw or cdm')
     parser.add_argument('--SRD', default=3, type=float, help='set a fixed threshold')
     parser.add_argument('--a', default=2, type=float, help='set a in DLCF')
