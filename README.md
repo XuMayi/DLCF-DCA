@@ -10,3 +10,5 @@ pytorch-transformers == 1.2.0 <br>
 ```
 python train.py --model dlcf_dca
 ```
+# Acknowledgement
+We have based our model development on https://github.com/songyouwei/ABSA-PyTorch. Thanks for their contribution.
