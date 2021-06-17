@@ -6,7 +6,7 @@ Python >= 3.6 <br>
 PyTorch >= 1.0 <br> 
 pytorch-transformers == 1.2.0 <br> 
 
-# Trainng
+# Training
 ```
 python train.py --model dlcf_dca
 ```
@@ -23,3 +23,4 @@ Some important scripts to note:
 
 # Acknowledgement
 We have based our model development on https://github.com/songyouwei/ABSA-PyTorch. Thanks for their contribution.
+
