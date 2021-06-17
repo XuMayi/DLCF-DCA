@@ -6,7 +6,8 @@
 * PyTorch >= 1.0 <br> 
 * pytorch-transformers == 1.2.0 <br> 
 * SpaCy >-= 2.2
-To use our models, you may need download `en_core_web_sm` by
+
+To use our models, you need download `en_core_web_sm` by
 `python -m spacy download en_core_web_sm`
 
 # Training
