@@ -7,4 +7,4 @@ PyTorch >= 1.0 <br>
 pytorch-transformers == 1.2.0 <br> 
 
 # Trainng
-		python train.py
+		python train.py --model dlcf_dca
