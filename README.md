@@ -10,7 +10,8 @@ pytorch-transformers == 1.2.0 <br>
 ```
 python train.py --model dlcf_dca
 ```
-
+#  Model Architecture
+![dlcf_dca](img/dlcf_dca.png)
 
 # Note
 Some important scripts to note:
