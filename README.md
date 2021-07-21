@@ -1,7 +1,13 @@
 # DLCF-DCA
  Codes for paper Combining Dynamic Local Context Focus and Dependency Cluster Attention for Aspect-level sentiment classification. submitted to 《Neurocomputing》.
 
-We integrate the DLCF_DCA model in [PyABSA](https://github.com/yangheng95/PyABSA), the optimized codes in [DLCF-DCA](https://github.com/yangheng95/PyABSA/blob/release/pyabsa/tasks/apc/models/dlcf_dca_bert.py).
+We integrate and optimize the DLCF_DCA model in [PyABSA](https://github.com/yangheng95/PyABSA).
+
+To quickly train the DCLF_DCA, you can install the [PyABSA](https://github.com/yangheng95/PyABSA) by:
+```
+pip install -U pyabsa
+```
+More detail is shown in [PyABSA](https://github.com/yangheng95/PyABSA).
 
 # Requirement
 * Python >= 3.6 <br> 
