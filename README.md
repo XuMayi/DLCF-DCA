@@ -44,7 +44,7 @@ apc_config_english.evaluate_begin = 0
 apc_config_english.l2reg = 0.00001
 apc_config_english.seed = {1, 2, 3}
 apc_config_english.cross_validate_fold = -1  # disable cross_validate
-#apc_config_english.use_syntax_based_SRD = True
+apc_config_english.use_syntax_based_SRD = True
 ```
 ### 4. Configure runtime setting and running training
 ```
