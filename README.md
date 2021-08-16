@@ -7,7 +7,7 @@ To use PyABSA, install the latest version from pip or source code:
 ```
 pip install -U pyabsa
 ```
-More detail is shown in [PyABSA](https://github.com/yangheng95/PyABSA).
+
 
 
 我们开发了一个高效易用的方面级情感分析框架PyABSA，并将优化后的DLCF-DCA模型整合到这个框架之中。
@@ -18,7 +18,7 @@ More detail is shown in [PyABSA](https://github.com/yangheng95/PyABSA).
 ```
 pip install -U pyabsa
 ```
-更多的细节可以参考[PyABSA](https://github.com/yangheng95/PyABSA) 。
+
 
 ## Quick Start
 ### 1. Import necessary entries
@@ -56,6 +56,9 @@ sent_classifier = Trainer(config=apc_config_english,
                           auto_device=True  # automatic choose CUDA or CPU
                           )
 ```
+More detail is shown in [PyABSA](https://github.com/yangheng95/PyABSA).
+
+更多的细节可以参考[PyABSA](https://github.com/yangheng95/PyABSA) 。
 
 # DLCF-DCA
  Codes for paper Combining Dynamic Local Context Focus and Dependency Cluster Attention for Aspect-level sentiment classification. submitted to 《Neurocomputing》.
