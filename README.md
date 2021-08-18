@@ -98,7 +98,7 @@ results = sent_classifier.batch_infer(target_file=inference_sets,
                                       )
 ```
 
-#Training on our checkpoint
+# Training on our checkpoint
 ### 1. Import necessary entries
 ```
 from pyabsa.functional import APCCheckpointManager
