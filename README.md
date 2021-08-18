@@ -20,7 +20,7 @@ pip install -U pyabsa
 ```
 
 
-## Quick Start
+## Quick Start of Training and Testing
 ### 1. Import necessary entries
 ```
 from pyabsa.functional import Trainer
@@ -46,6 +46,7 @@ apc_config_english.num_epoch = 10
 apc_config_english.l2reg = 0.00001
 apc_config_english.seed = {0, 1, 2, 3}
 apc_config_english.use_syntax_based_SRD = True
+apc_config_english.evaluate_begin = 0
 ```
 ### 4. Configure runtime setting and running training
 ```
@@ -56,6 +57,88 @@ sent_classifier = Trainer(config=apc_config_english,
                           auto_device=True  # automatic choose CUDA or CPU
                           )
 ```
+
+## Quick Start of Inferring
+We share some checkpoints for the DLCF-DCA models in Google drive.
+
+Our codes will automatically download the checkpoint.
+
+|      checkpoint name        | Laptop14 (acc) |  Laptop14 (f1) |
+| :------------------: | :------------: | :-----------: |
+| ['dlcf-dca-bert1'](https://drive.google.com/file/d/1w-NtWujPglsvZu4-jC6Vmu8Iz8CvX-1u/view?usp=sharing) |      81.50     |   78.03      |
+
+| checkpoint name       | Restaurant14 (acc) |  Restaurant14 (f1) |
+| :--------------------: | :--------------: | :-----------: |
+| ['dlcf-dca-bert2'](https://drive.google.com/file/d/1py52V7GmkvjWxrpKICY6h7XaUh9Anw7A/view?usp=sharing)  |     86.79      |    80.53     |
+
+### 1. Import necessary entries
+```
+import os
+from pyabsa import APCCheckpointManager, ABSADatasetList
+os.environ['PYTHONIOENCODING'] = 'UTF8'
+```
+
+###2. Assume the sent_classifier and checkpoint
+```
+sentiment_map = {0: 'Negative', 1: 'Neutral', 2: 'Positive', -999: ''}
+
+sent_classifier = APCCheckpointManager.get_sentiment_classifier(checkpoint='dlcf-dca-bert1', #or 'dlcf-dca-bert2'
+                                                                auto_device=True,  # Use CUDA if available
+                                                                sentiment_map=sentiment_map
+                                                                )
+```
+###3. Configure inferring setting
+```
+# batch inferring_tutorials returns the results, save the result if necessary using save_result=True
+inference_sets = ABSADatasetList.Laptop14
+results = sent_classifier.batch_infer(target_file=inference_sets,
+                                      print_result=True,
+                                      save_result=True,
+                                      ignore_error=True,
+                                      )
+```
+
+#Training on our checkpoint
+### 1. Import necessary entries
+```
+from pyabsa.functional import APCCheckpointManager
+from pyabsa.functional import Trainer
+from pyabsa.functional import APCConfigManager
+from pyabsa.functional import ABSADatasetList
+from pyabsa.functional import APCModelList
+```
+### 2. Choose a base param_dict
+```
+apc_config_english = APCConfigManager.get_apc_config_english()
+```
+### 3. Specify an APC model and alter some hyper-parameters
+```
+apc_config_english.model = APCModelList.DLCF_DCA_BERT
+apc_config_english.lcf = "cdw" # or "cdm"
+apc_config_english.dlcf_a = 2
+apc_config_english.dca_p = 1
+apc_config_english.dca_layer = 3
+apc_config_english.max_seq_len = 80
+apc_config_english.dropout = 0.5
+apc_config_english.log_step = 5
+apc_config_english.num_epoch = 10
+apc_config_english.l2reg = 0.00001
+apc_config_english.seed = {0, 1, 2, 3}
+apc_config_english.use_syntax_based_SRD = True
+apc_config_english.evaluate_begin = 0
+```
+###2. Assume the sent_classifier and checkpoint
+```
+checkpoint_path = APCCheckpointManager.get_checkpoint('dlcf-dca-bert1')
+Laptop14 = ABSADatasetList.Laptop14
+sent_classifier = Trainer(config=apc_config_english,
+                          dataset=SLaptop14,
+                          from_checkpoint=checkpoint_path,
+                          checkpoint_save_mode=1,
+                          auto_device=True
+                          )
+```
+
 More detail is shown in [PyABSA](https://github.com/yangheng95/PyABSA).
 
 更多的细节可以参考[PyABSA](https://github.com/yangheng95/PyABSA) 。
