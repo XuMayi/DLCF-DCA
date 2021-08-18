@@ -78,7 +78,7 @@ from pyabsa import APCCheckpointManager, ABSADatasetList
 os.environ['PYTHONIOENCODING'] = 'UTF8'
 ```
 
-###2. Assume the sent_classifier and checkpoint
+### 2. Assume the sent_classifier and checkpoint
 ```
 sentiment_map = {0: 'Negative', 1: 'Neutral', 2: 'Positive', -999: ''}
 
@@ -87,7 +87,7 @@ sent_classifier = APCCheckpointManager.get_sentiment_classifier(checkpoint='dlcf
                                                                 sentiment_map=sentiment_map
                                                                 )
 ```
-###3. Configure inferring setting
+### 3. Configure inferring setting
 ```
 # batch inferring_tutorials returns the results, save the result if necessary using save_result=True
 inference_sets = ABSADatasetList.Laptop14
