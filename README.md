@@ -83,7 +83,7 @@ os.environ['PYTHONIOENCODING'] = 'UTF8'
 sentiment_map = {0: 'Negative', 1: 'Neutral', 2: 'Positive', -999: ''}
 
 sent_classifier = APCCheckpointManager.get_sentiment_classifier(checkpoint='dlcf-dca-bert1', #or 'dlcf-dca-bert2'
-                                                                auto_device=True,  # Use CUDA if available
+                                                                auto_device='cuda',  # Use CUDA if available
                                                                 sentiment_map=sentiment_map
                                                                 )
 ```
