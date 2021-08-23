@@ -1,4 +1,4 @@
-# PyABSA
+# DLCF-DCA (PyABSA-based)
 We exploit a efficient and easy-to-use aspect-based sentiment analysis framework PyABSA. Futhermore, we integrate the optimized DLCF-DCA model into this framework.
 
 You can easily train our DLCF-DCA models and design your models based on PyABSA.
@@ -127,12 +127,12 @@ apc_config_english.seed = {0, 1, 2, 3}
 apc_config_english.use_syntax_based_SRD = True
 apc_config_english.evaluate_begin = 0
 ```
-###2. Assume the sent_classifier and checkpoint
+### 4. Assume the sent_classifier and checkpoint
 ```
 checkpoint_path = APCCheckpointManager.get_checkpoint('dlcf-dca-bert1')
 Laptop14 = ABSADatasetList.Laptop14
 sent_classifier = Trainer(config=apc_config_english,
-                          dataset=SLaptop14,
+                          dataset=Laptop14,
                           from_checkpoint=checkpoint_path,
                           checkpoint_save_mode=1,
                           auto_device=True
