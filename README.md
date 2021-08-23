@@ -18,7 +18,8 @@ pip install -U pyabsa
 ```
 pip install -U pyabsa
 ```
-
+##  Model Architecture
+![dlcf_dca](pic/dlcf_dca.png)
 
 ## Quick Start of Training and Testing
 ### 1. Import necessary entries
@@ -184,8 +185,7 @@ To use our models, you need download `en_core_web_sm` by
 ```
 python train.py --model dlcf_dca
 ```
-##  Model Architecture
-![dlcf_dca](pic/dlcf_dca.png)
+
 
 ## Note
 Some important scripts to note:
