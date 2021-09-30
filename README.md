@@ -37,10 +37,10 @@ To use our models, you need download `en_core_web_sm` by
 
 ## Note
 Some important scripts to note:
-* [dlcf_dca_bert.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc/models/dlcf_dca_bert.py): the source code of DLCF_DCA model.
-* [apc_utils_for_dlcf_dca.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc/dataset_utils/apc_utils_for_dlcf_dca.py): preprocess the tokens and calculates the shortest distance to target words and cluster via the Dependency Syntax Parsing Tree.
-* [apc_utils.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc/dataset_utils/apc_utils.py): calculates the SynRD from aspect term to target words via the Dependency Syntax Parsing Tree.
-* [apc_trainer.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc//training/apc_trainer.py): training process instruction.
+* [dlcf_dca_bert.py](https://github.com/XuMayi/DLCF-DCA/blob/main/pyabsa/core/apc/models/dlcf_dca_bert.py): the source code of DLCF_DCA model.
+* [apc_utils_for_dlcf_dca.py](https://github.com/XuMayi/DLCF-DCA/blob/main/pyabsa/core/apc/dataset_utils/apc_utils_for_dlcf_dca.py): preprocess the tokens and calculates the shortest distance to target words and cluster via the Dependency Syntax Parsing Tree.
+* [apc_utils.py](https://github.com/XuMayi/DLCF-DCA/blob/main/pyabsa/core/apc/dataset_utils/apc_utils.py): calculates the SynRD from aspect term to target words via the Dependency Syntax Parsing Tree.
+* [apc_trainer.py](https://github.com/XuMayi/DLCF-DCA/blob/main/pyabsa/core/apc//training/apc_trainer.py): training process instruction.
 
 ## Dataset
 Our code will automatically download the datasets in intergrated_datasets folder
