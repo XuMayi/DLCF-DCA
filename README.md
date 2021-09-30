@@ -67,11 +67,10 @@ apc_config_english = APCConfigManager.get_apc_config_english()
 ### 3. Specify an APC model and alter some hyper-parameters
 ```
 apc_config_english.model = APCModelList.DLCF_DCA_BERT
-apc_config_english.lcf = "cdw" # or "cdm"
+apc_config_english.lcf = "cdm" # or "cdw"
 apc_config_english.dlcf_a = 2
 apc_config_english.dca_p = 1
 apc_config_english.dca_layer = 3
-apc_config_english.max_seq_len = 80
 apc_config_english.dropout = 0.5
 apc_config_english.num_epoch = 10
 apc_config_english.l2reg = 0.00001
