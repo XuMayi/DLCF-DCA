@@ -1,4 +1,7 @@
 # DLCF-DCA (PyABSA-based)
+
+Codes for paper Combining Dynamic Local Context Focus and Dependency Cluster Attention for Aspect-level sentiment classification. submitted to 《Neurocomputing》.
+
 We exploit a efficient and easy-to-use aspect-based sentiment analysis framework PyABSA. Futhermore, we integrate the optimized DLCF-DCA model into this framework.
 
 You can easily train our DLCF-DCA models and design your models based on PyABSA.
@@ -18,8 +21,36 @@ pip install -U pyabsa
 ```
 pip install -U pyabsa
 ```
+## Requirement
+* Python >= 3.6 <br> 
+* PyTorch >= 1.0 <br> 
+* transformers >= 2.4.0 <br> 
+* SpaCy >= 2.2
+
+To use our models, you need download `en_core_web_sm` by
+`python -m spacy download en_core_web_sm`
+
+
 ##  Model Architecture
 ![dlcf_dca](pic/dlcf_dca.png)
+
+
+## Note
+Some important scripts to note:
+* [dlcf_dca_bert.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc/models/dlcf_dca_bert.py): the source code of DLCF_DCA model.
+* [apc_utils_for_dlcf_dca.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc/dataset_utils/apc_utils_for_dlcf_dca.py): preprocess the tokens and calculates the shortest distance to target words and cluster via the Dependency Syntax Parsing Tree.
+* [apc_utils.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc/dataset_utils/apc_utils.py): calculates the SynRD from aspect term to target words via the Dependency Syntax Parsing Tree.
+* [apc_trainer.py](https://github.com/XuMayi/DLCF-DCA/pyabsa/core/apc//training/apc_trainer.py): training process instruction.
+
+## Dataset
+Our code will automatically download the datasets in intergrated_datasets folder
+* integrated_datasets/apc_datasets/SemEval/laptop14/*.seg: Preprocessed training and testing sentences in SemEval-2014 laptop dataset.
+* integrated_datasets/apc_datasets/SemEval/restaurant14/*.seg: Preprocessed training and testing sentences in SemEval-2014 restaurant dataset.
+* integrated_datasets/apc_datasets/SemEval/restaurant15/*.seg: Preprocessed training and testing sentences in SemEval-2015 restaurant dataset.
+* integrated_datasets/apc_datasets/SemEval/restaurant16/*.seg: Preprocessed training and testing sentences in SemEval-2016 restaurant dataset.
+* integrated_datasets/apc_datasets/TShirt/*.seg: Preprocessed training and testing sentences in Tshirt dataset.
+* integrated_datasets/apc_datasets/Television/*.seg: Preprocessed training and testing sentences in Television dataset.
+
 
 ## Quick Start of Training and Testing
 ### 1. Import necessary entries
@@ -42,18 +73,16 @@ apc_config_english.dca_p = 1
 apc_config_english.dca_layer = 3
 apc_config_english.max_seq_len = 80
 apc_config_english.dropout = 0.5
-apc_config_english.log_step = 5
 apc_config_english.num_epoch = 10
 apc_config_english.l2reg = 0.00001
 apc_config_english.seed = {0, 1, 2, 3}
-apc_config_english.use_syntax_based_SRD = True
 apc_config_english.evaluate_begin = 0
 ```
 ### 4. Configure runtime setting and running training
 ```
-Laptop14 = ABSADatasetList.Laptop14 # or Restaurant14, Restaurant15, Restaurant16
+dataset_path = ABSADatasetList.Restaurant14
 sent_classifier = Trainer(config=apc_config_english,
-                          dataset=Laptop14,  # train set and test set will be automatically detected
+                          dataset=dataset_path,  # train set and test set will be automatically detected
                           checkpoint_save_mode=1,  # =None to avoid save model
                           auto_device=True  # automatic choose CUDA or CPU
                           )
@@ -146,11 +175,9 @@ apc_config_english.dca_p = 1
 apc_config_english.dca_layer = 3
 apc_config_english.max_seq_len = 80
 apc_config_english.dropout = 0.5
-apc_config_english.log_step = 5
 apc_config_english.num_epoch = 10
 apc_config_english.l2reg = 0.00001
 apc_config_english.seed = {0, 1, 2, 3}
-apc_config_english.use_syntax_based_SRD = True
 apc_config_english.evaluate_begin = 0
 ```
 ### 4. Assume the sent_classifier and checkpoint
@@ -165,42 +192,5 @@ sent_classifier = Trainer(config=apc_config_english,
                           )
 ```
 
-More detail is shown in [PyABSA](https://github.com/yangheng95/PyABSA).
-
-更多的细节可以参考[PyABSA](https://github.com/yangheng95/PyABSA) 。
-
-# DLCF-DCA
- Codes for paper Combining Dynamic Local Context Focus and Dependency Cluster Attention for Aspect-level sentiment classification. submitted to 《Neurocomputing》.
-
-## Requirement
-* Python >= 3.6 <br> 
-* PyTorch >= 1.0 <br> 
-* pytorch-transformers == 1.2.0 <br> 
-* SpaCy >= 2.2
-
-To use our models, you need download `en_core_web_sm` by
-`python -m spacy download en_core_web_sm`
-
-## Training
-```
-python train.py --model dlcf_dca
-```
-
-
-## Note
-Some important scripts to note:
-* datasets/semeval14/*.seg: Preprocessed training and testing sentences in SemEval2014.
-* datasets/semeval15/*.seg: Preprocessed training and testing sentences in SemEval2015.
-* datasets/semeval16/*.seg: Preprocessed training and testing sentences in SemEval2016.
-* models/dlcf_dca.py: the source code of DLCF_DCA model.
-* data_utils.py/ABSADataSet class: preprocess the tokens and calculates the shortest distance to target words and cluster via the Dependency Syntax Parsing Tree.
-
-## Out of Memory
-Since BERT models require a lot of memory. If the out-of-memory problem while training the model, here are the ways to mitigate the problem:
-1. Reduce the training batch size ( batch_size = 4 or 8 )
-2. Reduce the longest input sequence ( max_seq_len = 40 or 60 )
-3. Set `use_single_bert = true` to use a unique BERT layer to model for both local and global contexts
-
 ## Acknowledgement
-We have based our model development on https://github.com/songyouwei/ABSA-PyTorch. Thanks for their contribution.
-
+We have based our model development on [PyABSA](https://github.com/yangheng95/PyABSA). Thanks for their contribution.
