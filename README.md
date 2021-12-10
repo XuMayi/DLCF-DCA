@@ -8,7 +8,7 @@ You can easily train our DLCF-DCA models and design your models based on PyABSA.
 
 To use PyABSA, install the latest version from pip or source code:
 ```
-pip install -U pyabsa
+pip install pyabsa==1.1.24
 ```
 
 
@@ -19,7 +19,7 @@ pip install -U pyabsa
 
 您可以通过以下代码来安装PyABSA ：
 ```
-pip install -U pyabsa
+pip install pyabsa==1.1.24
 ```
 ## Requirement
 * Python >= 3.6 <br> 
